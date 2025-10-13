@@ -1,0 +1,1 @@
+// Apply Loan page JS

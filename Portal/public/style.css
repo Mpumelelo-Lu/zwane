@@ -1,3 +1,40 @@
+/* Layout Fixes for Navbar/Sidebar/Main */
+body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#navbar {
+  width: 100%;
+  z-index: 1000;
+}
+
+.dashboard-container {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+}
+
+#sidebar {
+  height: calc(100vh - 70px);
+  min-width: 260px;
+  max-width: 260px;
+  flex-shrink: 0;
+}
+
+#main-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: calc(100vh - 70px);
+  overflow-y: auto;
+  background: #fff;
+}
 /* Global Styles */
 * {
   margin: 0;

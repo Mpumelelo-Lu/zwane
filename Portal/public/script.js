@@ -61,24 +61,36 @@ async function loadPage(pageName) {
     if (!htmlResponse.ok) throw new Error(`Page not found: ${pageName}`);
     const htmlContent = await htmlResponse.text();
 
-    // Load CSS
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = `/pages-css/${pageName}.css?t=${Date.now()}`;
-    document.head.appendChild(link);
+
+    // Load CSS with error handling
+    try {
+      const cssUrl = `/pages-css/${pageName}.css?t=${Date.now()}`;
+      await fetchWithTimeout(cssUrl, 2000); // Try to fetch CSS, but don't block if missing
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = cssUrl;
+      document.head.appendChild(link);
+    } catch (e) {
+      console.warn(`CSS for ${pageName} not found or timed out.`);
+    }
 
     // Insert HTML into main content
     const mainContent = document.getElementById('main-content');
     mainContent.innerHTML = htmlContent;
     mainContent.classList.add('fade-in');
 
-    // Load JavaScript for the page
-    const scriptResponse = await fetch(`/pages-js/${pageName}.js?t=${Date.now()}`);
-    if (scriptResponse.ok) {
-      const scriptContent = await scriptResponse.text();
-      const script = document.createElement('script');
-      script.innerHTML = scriptContent;
-      mainContent.appendChild(script);
+    // Load JavaScript for the page with error handling
+    try {
+      const jsUrl = `/pages-js/${pageName}.js?t=${Date.now()}`;
+      const scriptResponse = await fetchWithTimeout(jsUrl, 2000);
+      if (scriptResponse.ok) {
+        const scriptContent = await scriptResponse.text();
+        const script = document.createElement('script');
+        script.innerHTML = scriptContent;
+        mainContent.appendChild(script);
+      }
+    } catch (e) {
+      console.warn(`JS for ${pageName} not found or timed out.`);
     }
 
     // Update active nav link
@@ -87,7 +99,20 @@ async function loadPage(pageName) {
     // Update URL
     window.history.pushState({ page: pageName }, '', `/?page=${pageName}`);
 
-    showLoading(false);
+  showLoading(false);
+// Helper: fetch with timeout
+async function fetchWithTimeout(resource, ms) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), ms);
+  try {
+    const response = await fetch(resource, { signal: controller.signal });
+    clearTimeout(id);
+    return response;
+  } catch (e) {
+    clearTimeout(id);
+    throw e;
+  }
+}
   } catch (error) {
     console.error('Error loading page:', error);
     showLoading(false);
@@ -141,8 +166,14 @@ function showLoading(show) {
   const loader = document.getElementById('loading-indicator');
   if (show) {
     loader.classList.remove('loading-hidden');
+    // Set a max timeout to always hide after 3 seconds
+    if (window._loadingTimeout) clearTimeout(window._loadingTimeout);
+    window._loadingTimeout = setTimeout(() => {
+      loader.classList.add('loading-hidden');
+    }, 3000);
   } else {
     loader.classList.add('loading-hidden');
+    if (window._loadingTimeout) clearTimeout(window._loadingTimeout);
   }
 }
 

@@ -162,20 +162,7 @@ function getPageFromURL() {
 /**
  * Show/hide loading indicator
  */
-function showLoading(show) {
-  const loader = document.getElementById('loading-indicator');
-  if (show) {
-    loader.classList.remove('loading-hidden');
-    // Set a max timeout to always hide after 3 seconds
-    if (window._loadingTimeout) clearTimeout(window._loadingTimeout);
-    window._loadingTimeout = setTimeout(() => {
-      loader.classList.add('loading-hidden');
-    }, 3000);
-  } else {
-    loader.classList.add('loading-hidden');
-    if (window._loadingTimeout) clearTimeout(window._loadingTimeout);
-  }
-}
+function showLoading(show) {}
 
 /**
  * Setup notification button

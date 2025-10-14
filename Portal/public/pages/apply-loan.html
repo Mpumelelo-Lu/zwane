@@ -1,5 +1,72 @@
-<!-- Apply Loan page (with modules) -->
-<section>
-  <h1>Apply for a Loan</h1>
-  <!-- Modules will be included here -->
-</section>
+<div class="container">
+ 
+
+  <div class="steps">
+    <div class="step active">
+      <span class="step-number">01</span>
+      <span>Documents</span>
+    </div>
+    <div class="step inactive">
+      <span class="step-number">02</span>
+      <span>Credit Check</span>
+    </div>
+    <div class="step inactive">
+      <span class="step-number">03</span>
+      <span>Confirmation</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="left-section">
+      <div>
+        <div class="left-title">Select ID Document</div>
+        <div class="left-subtitle">
+          Provide 2 documents. At least 1 document must have your photograph.
+        </div>
+
+        <div class="illustration">
+          <div class="illustration-content">
+            👆🏷
+          </div>
+        </div>
+
+        <div class="privacy-note">
+          📷 Photos captured during the ID verification are deleted immediately after.
+          Please use our <strong>Privacy Policy</strong> if you have any questions.
+        </div>
+      </div>
+
+      <div class="right-section">
+        <div class="document-grid">
+          <button class="document-btn" onclick="loadModule('kyc')">
+            <div class="document-icon">🪪</div>
+            <div class="document-label">KYC Verification</div>
+          </button>
+
+          <button class="document-btn" onclick="loadModule('idcard')">
+            <div class="document-icon">📋</div>
+            <div class="document-label">ID Card</div>
+          </button>
+        </div>
+
+        <div class="document-grid">
+          <button class="document-btn" onclick="loadModule('tillslip')">
+            <div class="document-icon">🧾</div>
+            <div class="document-label">Till Slip</div>
+          </button>
+
+          <button class="document-btn" onclick="loadModule('bankstatement')">
+            <div class="document-icon">🏦</div>
+            <div class="document-label">Bank Statement</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Module Container -->
+  <div id="module-container" class="module-overlay hidden">
+    <div id="module-content" class="module-content"></div>
+    <button class="close-btn" onclick="closeModule()">✖</button>
+  </div>
+

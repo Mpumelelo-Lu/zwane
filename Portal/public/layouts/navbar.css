@@ -6,7 +6,7 @@
   position: fixed;
   top: 0;
   left: 260px;
-  width: calc(100% - 300px);
+  width: calc(100% - 250px);
   height: 70px;
   display: flex;
   align-items: center;
@@ -62,14 +62,14 @@
   padding: 10px 16px 10px 40px;
   border: none;
   border-radius: 24px;
-  background: #ec770a;
+  background: #f0f0f0;
   color: white;
   font-size: 14px;
   transition: background 0.2s ease;
 }
 
 .search-input::placeholder {
-  color: #ec770a;
+  color: #ffffff;
 }
 
 .search-input:focus {

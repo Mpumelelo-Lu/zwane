@@ -1,3 +1,1 @@
-# Controllers
-
-Place your existing and new page controllers here.
+these are the contolllers to the modules , butyou can add controllers for other pages as well. remeber ro register on the app.js

@@ -1,9 +1,11 @@
 const path = require('path');
 
+// Configuration
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'application/pdf'];
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.pdf'];
 
+// Validation helper functions
 const validateFileType = (mimeType, originalName) => {
   const fileExtension = path.extname(originalName).toLowerCase();
   
@@ -24,10 +26,10 @@ const sanitizeFilename = (originalName) => {
     .substring(0, 255); // Limit filename length
 };
 
-const uploadTillSlip = async (req, res) => {
+exports.uploadBankStatement = async (req, res) => {
   try {
-    console.log('📥 Till slip upload endpoint hit');
-    
+    console.log('📥 Bank statement upload endpoint hit');
+
     // Check if file exists
     if (!req.file) {
       console.log('⚠ No file received in request');
@@ -59,17 +61,17 @@ const uploadTillSlip = async (req, res) => {
 
     // Sanitize filename
     const sanitizedFilename = sanitizeFilename(originalname);
-    console.log('🧾 File validated:', sanitizedFilename, `(${(size / 1024).toFixed(2)}KB)`);
+  console.log('🏦 File validated:', sanitizedFilename, `(${(size / 1024).toFixed(2)}KB)`);
 
     // TODO: Upload to Supabase here
     // const { data, error } = await supabase.storage
-    //   .from('till-slips')
+    //   .from('bank-statement')
     //   .upload(${Date.now()}_${sanitizedFilename}, buffer, {
     //     contentType: mimetype,
     //   });
 
     res.status(200).json({
-      message: 'Till slip uploaded successfully!',
+      message: 'Bank statement uploaded successfully!',
       filename: sanitizedFilename,
       size: size,
       sizeFormatted: `${(size / 1024).toFixed(2)}KB`,
@@ -85,8 +87,4 @@ const uploadTillSlip = async (req, res) => {
       message: 'An unexpected error occurred during file upload. Please try again.' 
     });
   }
-};
-
-module.exports = {
-  uploadTillSlip
 };

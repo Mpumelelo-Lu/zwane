@@ -1,12 +1,9 @@
+const express = require('express');
+const multer = require('multer');
+const { uploadTillSlip } = require('../controllers/tillSlipController');
 
-import express from 'express';
-import multer from 'multer';
-import { uploadTillSlip } from '../controllers/tillSlipController.js';
 const router = express.Router();
-
-// Multer configuration
 const storage = multer.memoryStorage();
-
 const upload = multer({
   storage: storage,
   limits: {
@@ -15,7 +12,6 @@ const upload = multer({
   fileFilter: (req, file, cb) => {
     // Server-side MIME type validation
     const allowedMimes = ['image/jpeg', 'image/png', 'application/pdf'];
-    
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
@@ -51,4 +47,4 @@ const handleMulterError = (err, req, res, next) => {
 // POST /api/tillslip/upload
 router.post('/upload', upload.single('file'), handleMulterError, uploadTillSlip);
 
-export default router;
+module.exports = router;

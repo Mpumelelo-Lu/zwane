@@ -1,4 +1,12 @@
 // Apply Loan page JS
+window.showApplyLoan2 = function() {
+  if (typeof loadPage === 'function') {
+    loadPage('apply-loan-2');
+  } else {
+    window.location.href = 'apply-loan-2.html';
+  }
+}
+
 async function loadModule(name) {
   const overlay = document.getElementById("module-container");
   const moduleContent = document.getElementById("module-content");

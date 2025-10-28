@@ -1,40 +1,28 @@
+.apply-page {
+  min-height: 100vh;
+}
+.apply-page .container {
+  min-height: 80vh;
+}
+.apply-page .container {
+  margin-top: 10rem !important;
+}
+/* Vertically center the apply-loan page content */
 
-/* Example: Style the header and buttons for Apply Loan page */
-.header {
-  background: #f0f4ff;
-  padding: 24px 0 12px 0;
-  text-align: center;
-  border-radius: 8px;
-  margin-bottom: 24px;
+.apply-page {
+  min-height: 100vh;
+  padding-top: 100px; /* adjust for navbar height */
+  box-sizing: border-box;
+  margin: 0;
 }
-
-.header .logo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #3a3a3a;
+.apply-page .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px); /* leave space for navbar and some margin */
 }
-
-.header .title {
-  font-size: 1.1rem;
-  color: #fc8b00;
-  margin-top: 6px;
-}
-
-.document-btn {
-  background: #fff;
-  border: 1.5px solid #fa6b05;
-  color: #fa6f12;
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.document-btn:hover {
-  background: #f48507;
-  color: #fff;
-}
+/* Apply Loan Page Styles */
 body {
   font-family: "Segoe UI", sans-serif;
   background: #f8faff;
@@ -53,19 +41,30 @@ body {
 }
 
 .header {
+  background-color: #ffffff;
+  padding: 24px 0 12px 0;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
   border-bottom: 1px solid #eee;
 }
 
-.logo {
+.header .logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #3a3a3a;
   font-weight: bold;
   font-size: 1.5rem;
-  color: #ff8706;;
+  color: #ff8706;
 }
 
-.title {
+.header .title {
+  font-size: 1.1rem;
+  color: #fc8b00;
+  margin-top: 6px;
   font-size: 1.2rem;
   color: #333;
   align-self: center;
@@ -103,44 +102,164 @@ body {
   padding-right: 2rem;
 }
 
+.left-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.left-subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.illustration {
+  background: #f4f8ff;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.illustration-content {
+  font-size: 3rem;
+}
+
+.illustration-content i {
+  color: #ff8706;
+  margin: 0 0.5rem;
+}
+
+.privacy-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.privacy-note i {
+  color: #ff8706;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+.privacy-link {
+  color: #ff8706;
+  text-decoration: none;
+}
+
+.privacy-link:hover {
+  text-decoration: underline;
+}
+
 .right-section {
   flex: 1;
   padding-left: 2rem;
 }
 
-.document-grid {
-  display: flex;
-  justify-content: space-between;
+.document-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   margin-bottom: 1.5rem;
 }
 
+.document-list li {
+  margin-bottom: 0.75rem;
+}
+
 .document-btn {
-  background: #f4f8ff;
-  border: 1px solid #ffecdc;
-  border-radius: 12px;
-  width: 30%;
-  padding: 1rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid #fa6b05;
+  color: #fa6f12;
+  border-radius: 8px;
+  padding: 16px 20px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.2s;
+  text-align: left;
 }
 
 .document-btn:hover {
-  background: #ff8706;
+  background: #f48507;
   color: #fff;
-  transform: scale(1.05);
+  transform: translateX(4px);
+}
+
+.document-btn:hover .document-icon {
+  color: #fff;
 }
 
 .document-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  color: #ff8706;
+  transition: color 0.2s;
 }
 
 .document-label {
-  margin-top: 0.5rem;
   font-weight: 500;
 }
 
-/* Overlay Module Container */
+.module-status {
+  min-height: 30px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.module-status i {
+  color: green;
+}
+
+.next-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  background: #d1d5db;
+  color: #9ca3af;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all 0.3s;
+}
+
+.next-btn:not(:disabled) {
+  background: linear-gradient(135deg, #ff8706 0%, #fa6b05 100%);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 135, 6, 0.3);
+}
+
+.next-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 135, 6, 0.4);
+}
+
+.next-btn:not(:disabled):hover i {
+  transform: translateX(4px);
+}
+
+.next-btn i {
+  transition: transform 0.3s;
+}
+
+/* Module Overlay */
 .module-overlay {
   position: fixed;
   top: 0;
@@ -182,4 +301,13 @@ body {
   height: 35px;
   font-size: 1rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  background: #991414;
+  transform: rotate(90deg);
 }

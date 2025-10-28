@@ -1,65 +1,83 @@
-<div class="container">
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply for Loan - Portal</title>
+  <link rel="stylesheet" href="../pages-css/apply-loan.css">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="apply-page">
+  <!-- Navbar -->
+  <!--#include file="../layouts/navbar.html" -->
 
-  <div class="steps">
-    <div class="step active">
-      <span class="step-number">01</span>
-      <span>Documents</span>
+  <div class="container">
+    <div class="steps">
+      <div class="step active">
+        <span class="step-number">01</span>
+        <span>Documents</span>
+      </div>
+      <div class="step inactive">
+        <span class="step-number">02</span>
+        <span>Credit Check</span>
+      </div>
+      <div class="step inactive">
+        <span class="step-number">03</span>
+        <span>Confirmation</span>
+      </div>
     </div>
-    <div class="step inactive">
-      <span class="step-number">02</span>
-      <span>Credit Check</span>
-    </div>
-    <div class="step inactive">
-      <span class="step-number">03</span>
-      <span>Confirmation</span>
-    </div>
-  </div>
 
-  <div class="content">
-    <div class="left-section">
-      <div>
+    <div class="content">
+      <div class="left-section">
         <div class="left-title">Select ID Document</div>
         <div class="left-subtitle">
           Provide 2 documents. At least 1 document must have your photograph.
         </div>
-
         <div class="illustration">
           <div class="illustration-content">
-            👆🏷
+            <i class="fas fa-file-alt"></i>
+            <i class="fas fa-tag"></i>
           </div>
         </div>
-
         <div class="privacy-note">
-          📷 Photos captured during the ID verification are deleted immediately after.
-          Please use our <strong>Privacy Policy</strong> if you have any questions.
+          <i class="fas fa-camera"></i>
+          <span>Photos captured during the ID verification are deleted immediately after.<br>
+          Please see our <a href="#" class="privacy-link">Privacy Policy</a> if you have any questions.</span>
         </div>
       </div>
-
       <div class="right-section">
-        <div class="document-grid">
-          <button class="document-btn" onclick="loadModule('kyc')">
-            <div class="document-icon">🪪</div>
-            <div class="document-label">KYC Verification</div>
-          </button>
-
-          <button class="document-btn" onclick="loadModule('idcard')">
-            <div class="document-icon">📋</div>
-            <div class="document-label">ID Card</div>
-          </button>
-        </div>
-
-        <div class="document-grid">
-          <button class="document-btn" onclick="loadModule('tillslip')">
-            <div class="document-icon">🧾</div>
-            <div class="document-label">Till Slip</div>
-          </button>
-
-          <button class="document-btn" onclick="loadModule('bankstatement')">
-            <div class="document-icon">🏦</div>
-            <div class="document-label">Bank Statement</div>
-          </button>
-        </div>
+        <ul class="document-list">
+          <li>
+            <button class="document-btn" onclick="loadModule('kyc')">
+              <i class="fas fa-user-check document-icon"></i>
+              <span class="document-label">KYC Verification</span>
+            </button>
+          </li>
+          <li>
+            <button class="document-btn" onclick="loadModule('idcard')">
+              <i class="fas fa-id-card document-icon"></i>
+              <span class="document-label">ID Card</span>
+            </button>
+          </li>
+          <li>
+            <button class="document-btn" onclick="loadModule('tillslip')">
+              <i class="fas fa-receipt document-icon"></i>
+              <span class="document-label">Till Slip</span>
+            </button>
+          </li>
+          <li>
+            <button class="document-btn" onclick="loadModule('bankstatement')">
+              <i class="fas fa-landmark document-icon"></i>
+              <span class="document-label">Bank Statement</span>
+            </button>
+          </li>
+        </ul>
+        <div id="module-status" class="module-status"></div>
+        <button class="next-btn" onclick="goToNextStep()">
+          <span>Next</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -67,6 +85,26 @@
   <!-- Dynamic Module Container -->
   <div id="module-container" class="module-overlay hidden">
     <div id="module-content" class="module-content"></div>
-    <button class="close-btn" onclick="closeModule()">✖</button>
+    <button class="close-btn" onclick="closeModule()">
+      <i class="fas fa-times"></i>
+    </button>
   </div>
 
+  <script>
+    function loadModule(module) {
+      document.getElementById('module-status').innerHTML = `<i class="fas fa-check-circle"></i> <span style='color:green;'>${module} validated successfully!</span>`;
+      document.querySelector('.next-btn').disabled = false;
+    }
+    
+    function goToNextStep() {
+      window.location.href = 'credit-check.html';
+    }
+    
+    function closeModule() {
+      document.getElementById('module-container').classList.add('hidden');
+    }
+    
+    document.querySelector('.next-btn').disabled = true;
+  </script>
+</body>
+</html>

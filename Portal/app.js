@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 import tillSlipRoute from './routes/tillSlipRoute.js';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // For ES modules __dirname workaround
 const __filename = fileURLToPath(import.meta.url);
